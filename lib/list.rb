@@ -16,6 +16,16 @@ class List
     end
   end
 
+  def prepend(data)
+    if @head.nil?
+      @head = Node.new(data)
+    else
+      old_head = @head
+      @head = Node.new(data)
+      @head.set_next(old_head)
+    end
+  end
+
   def last
     final = false
     index = @head
@@ -43,8 +53,9 @@ class List
     output = ""
     return output if @head.nil?
     while !final
-      output += index.data + " "
+      output += index.data
       return output if index.next_node.nil?
+      output += " "
       index = index.next_node
     end
   end
