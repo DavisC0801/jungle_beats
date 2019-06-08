@@ -50,4 +50,13 @@ class ListStructureTest < Minitest::Test
     assert_equal @list.count, 3
     assert_equal @list.to_string, "test_3 test_1 test_2"
   end
+
+  def test_it_can_insert_nodes
+    @list.append("test_1")
+    @list.append("test_2")
+    @list.append("test_3")
+    @list.insert(1, "test_4")
+
+    assert_equal @list.to_string, "test_1 test_4 test_2 test_3"
+  end
 end
