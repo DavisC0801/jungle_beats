@@ -26,6 +26,16 @@ class List
     end
   end
 
+  def insert(index, data)
+    tracker = @head
+    (index - 1).times do
+      tracker = tracker.next_node if !tracker.nil?
+    end
+    old_next = tracker.next_node
+    tracker.set_next(Node.new(data))
+    tracker.next_node.set_next(old_next)
+  end
+
   def last
     final = false
     index = @head
