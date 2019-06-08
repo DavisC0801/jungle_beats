@@ -43,7 +43,7 @@ class List
     output = ""
     return output if @head.nil?
     while !final
-      output += index.data
+      output += index.data + " "
       return output if index.next_node.nil?
       index = index.next_node
     end

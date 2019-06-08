@@ -36,5 +36,7 @@ class ListStructureTest < Minitest::Test
   def test_it_can_list_nodes_as_a_string
     @list.append("doop")
     assert_equal @list.to_string, "doop"
+    @list.append("deep")
+    assert_equal @list.to_string, "doop deep"
   end
 end
