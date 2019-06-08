@@ -17,7 +17,7 @@ class ListStructureTest < Minitest::Test
 
   def test_it_can_append_a_node
     @list.append("test")
-    assert_equal @node, @list.head
+    assert_equal @node.data, @list.head.data
   end
 
   def test_the_appended_node_has_no_default_next_node

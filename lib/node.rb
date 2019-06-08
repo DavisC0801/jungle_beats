@@ -7,4 +7,7 @@ class Node
     @next_node = nil
   end
 
+  def set_next(node)
+    @next_node = node
+  end
 end
