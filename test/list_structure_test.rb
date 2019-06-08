@@ -39,4 +39,15 @@ class ListStructureTest < Minitest::Test
     @list.append("deep")
     assert_equal @list.to_string, "doop deep"
   end
+
+  def test_it_can_prepend_nodes
+    @list.append("test_1")
+    @list.append("test_2")
+    @list.prepend("test_3")
+
+    assert_equal @list.head.data, "test_3"
+    assert_equal @list.head.next_node.data, "test_1"
+    assert_equal @list.count, 3
+    assert_equal @list.to_string, "test_3 test_1 test_2"
+  end
 end
