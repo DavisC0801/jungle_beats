@@ -59,4 +59,17 @@ class ListStructureTest < Minitest::Test
 
     assert_equal @list.to_string, "test_1 test_4 test_2 test_3"
   end
+
+  def test_it_can_find_nodes
+    @list.append("test_1")
+    @list.append("test_2")
+    @list.append("test_3")
+    @list.append("test_4")
+
+    assert_equal @list.find(2, 1), "test_3"
+    assert_equal @list.find(1, 3), "test_2 test_3 test_4"
+
+    assert_equal @list.find(0, 50), "test_1 test_2 test_3 test_4"
+    assert_equal @list.find(50, 50), "test_4"
+  end
 end
