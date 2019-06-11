@@ -61,7 +61,7 @@ class ListStructureTest < Minitest::Test
   end
 
   def test_it_can_find_nodes
-    @list.append("test_1")
+    @list.prepend("test_1")
     @list.append("test_2")
     @list.append("test_3")
     @list.append("test_4")
@@ -71,5 +71,18 @@ class ListStructureTest < Minitest::Test
 
     assert_equal @list.find(0, 50), "test_1 test_2 test_3 test_4"
     assert_equal @list.find(50, 50), "test_4"
+  end
+
+  def test_it_can_check_if_data_is_included_in_list
+    @list.prepend("test_1")
+    @list.append("test_2")
+    @list.append("test_3")
+    @list.append("test_4")
+
+    assert @list.includes?("test_1")
+    assert @list.includes?("test_3")
+    assert @list.includes?("test_4")
+    refute @list.includes?("test_99")
+    refute @list.includes?("facepalm")
   end
 end
