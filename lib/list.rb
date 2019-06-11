@@ -27,7 +27,7 @@ class List
   end
 
   def insert(index, data)
-    node = find_by_index(index)
+    node = find_by_index(index - 1)
     old_next = node.next_node
     node.set_next(Node.new(data))
     node.next_node.set_next(old_next)
@@ -54,11 +54,10 @@ class List
   end
 
   def to_string
-    final = false
     index = @head
     output = ""
     return output if @head.nil?
-    while !final
+    loop do
       output += index.data
       return output if index.next_node.nil?
       output += " "
@@ -68,14 +67,14 @@ class List
 
   def find_by_index(index)
     node = @head
-    (index - 1).times do
+    index.times do
       node = node.next_node if !node.next_node.nil?
     end
     node
   end
 
   def find(index, limit)
-    node = find_by_index(index)
+    node = find_by_index(index - 1)
     node = node.next_node if index > 0 && !node.next_node.nil?
     output = ""
     count = 0
@@ -95,5 +94,18 @@ class List
       index = index.next_node
     end
     false
+  end
+
+  def pop
+    return nil if @head.nil?
+    tail = find_by_index(count - 2)
+    final_node = tail.next_node
+    if final_node.nil?
+      final_node = tail
+      @head = nil
+    end
+    tail.set_next(nil)
+    return nil if final_node.nil?
+    final_node.data
   end
 end
