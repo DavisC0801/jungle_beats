@@ -34,24 +34,23 @@ class List
   end
 
   def last
-    final = false
+    return nil if @head.nil?
     index = @head
-    while !final
-      return index if index.next_node.nil?
+    while !index.next_node.nil?
       index = index.next_node
     end
+    index
   end
 
   def count
-    final = false
+    return 0 if @head.nil?
     index = @head
-    count = 0
-    return count if @head.nil?
-    while !final
+    count = 1
+    while !index.next_node.nil?
       count += 1
-      return count if index.next_node.nil?
       index = index.next_node
     end
+    count
   end
 
   def to_string
@@ -87,6 +86,14 @@ class List
       output += " "
       node = node.next_node
     end
-    output
+  end
+
+  def includes?(search_value)
+    index = @head
+    while !index.nil?
+      return true if index.data == search_value
+      index = index.next_node
+    end
+    false
   end
 end
