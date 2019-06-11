@@ -34,6 +34,7 @@ class ListStructureTest < Minitest::Test
   end
 
   def test_it_can_list_nodes_as_a_string
+    assert_equal @list.to_string, ""
     @list.append("doop")
     assert_equal @list.to_string, "doop"
     @list.append("deep")
@@ -84,5 +85,26 @@ class ListStructureTest < Minitest::Test
     assert @list.includes?("test_4")
     refute @list.includes?("test_99")
     refute @list.includes?("facepalm")
+  end
+
+  def test_it_can_pop_from_the_list
+    assert_nil @list.pop
+
+    @list.prepend("test_1")
+    assert_equal @list.pop, "test_1"
+    assert_nil @list.pop
+    assert_equal @list.to_string, ""
+
+
+    @list.prepend("test_1")
+    @list.append("test_2")
+    @list.append("test_3")
+    @list.append("test_4")
+    @list.append("test_5")
+
+    assert_equal @list.to_string, "test_1 test_2 test_3 test_4 test_5"
+    assert_equal @list.pop, "test_5"
+    assert_equal @list.pop, "test_4"
+    assert_equal @list.to_string, "test_1 test_2 test_3"
   end
 end
