@@ -27,13 +27,10 @@ class List
   end
 
   def insert(index, data)
-    tracker = @head
-    (index - 1).times do
-      tracker = tracker.next_node if !tracker.nil?
-    end
-    old_next = tracker.next_node
-    tracker.set_next(Node.new(data))
-    tracker.next_node.set_next(old_next)
+    node = find_by_index(index)
+    old_next = node.next_node
+    node.set_next(Node.new(data))
+    node.next_node.set_next(old_next)
   end
 
   def last
@@ -68,5 +65,28 @@ class List
       output += " "
       index = index.next_node
     end
+  end
+
+  def find_by_index(index)
+    node = @head
+    (index - 1).times do
+      node = node.next_node if !node.next_node.nil?
+    end
+    node
+  end
+
+  def find(index, limit)
+    node = find_by_index(index)
+    node = node.next_node if index > 0 && !node.next_node.nil?
+    output = ""
+    count = 0
+    while limit >= count
+      output += node.data
+      count += 1
+      return output if node.next_node.nil? || limit == count
+      output += " "
+      node = node.next_node
+    end
+    output
   end
 end
