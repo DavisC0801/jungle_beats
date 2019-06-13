@@ -1,5 +1,5 @@
 require "./test/test_helper"
-require "./lib/list.rb"
+require "./lib/list"
 
 class ListStructureTest < Minitest::Test
   def setup
