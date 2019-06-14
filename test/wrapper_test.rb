@@ -28,4 +28,33 @@ class JungleBeatTest < Minitest::Test
     @jb.append("test_4 test_5 test_6")
     assert_equal @jb.count, 6
   end
+
+  def skip_test_it_can_play_beats
+    @jb.append("ding dah oom oom ding oom oom oom ding dah oom oom ding dah oom oom ding dah oom oom")
+    @jb.play
+  end
+
+  def test_it_can_validate_beats
+    test_jb = JungleBeat.new("deep")
+    test_jb.append("test_1")
+    assert_equal test_jb.list.count, 1
+    test_jb.append("ding dah test_2 oom")
+    assert_equal test_jb.list.count, 4
+  end
+
+  def test_it_can_change_rate
+    assert_equal @jb.rate, 500
+    @jb.rate = 100
+    assert_equal @jb.rate, 100
+    @jb.reset_rate
+    assert_equal @jb.rate, 500
+  end
+
+  def test_it_can_change_voice
+    assert_equal @jb.voice, "Alex"
+    @jb.voice = "Alice"
+    assert_equal @jb.voice, "Alice"
+    @jb.reset_voice
+    assert_equal @jb.voice, "Alex"
+  end
 end
