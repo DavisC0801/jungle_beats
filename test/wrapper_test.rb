@@ -20,12 +20,12 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_new_items_can_be_added
-    @jb.append("test_1 test_2 test_3")
-    assert_equal @jb.list.head.data, "test_1"
-    assert_equal @jb.list.head.next_node.data, "test_2"
+    @jb.append("deep doo dah")
+    assert_equal @jb.list.head.data, "deep"
+    assert_equal @jb.list.head.next_node.data, "doo"
     assert_equal @jb.count, 3
 
-    @jb.append("test_4 test_5 test_6")
+    @jb.append("oom tee dee")
     assert_equal @jb.count, 6
   end
 
