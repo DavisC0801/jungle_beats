@@ -6,40 +6,42 @@ class List
 
   def initialize
     @head = nil
+    @acceptable_inputs = ["doop", "ding", "dah", "oom", "tee", "dee", "bop", "boop", "la", "na", "hoo", "doo", "ditt", "deep", "woo", "shi", "shu", "blop", "dop", "plop", "suu"]
+    @list_length = 0
   end
 
   def append(data)
-    if @head.nil?
-      @head = Node.new(data)
-    else
-      last.set_next(Node.new(data))
+    if @acceptable_inputs.include?(data)
+      if @head.nil?
+        @head = Node.new(data)
+      else
+        find_by_index(@list_length - 1).set_next(Node.new(data))
+      end
+      @list_length += 1
     end
   end
 
   def prepend(data)
-    if @head.nil?
-      @head = Node.new(data)
-    else
-      old_head = @head
-      @head = Node.new(data)
-      @head.set_next(old_head)
+    if @acceptable_inputs.include?(data)
+      if @head.nil?
+        @head = Node.new(data)
+      else
+        old_head = @head
+        @head = Node.new(data)
+        @head.set_next(old_head)
+      end
+      @list_length += 1
     end
   end
 
   def insert(index, data)
-    node = find_by_index(index - 1)
-    old_next = node.next_node
-    node.set_next(Node.new(data))
-    node.next_node.set_next(old_next)
-  end
-
-  def last
-    return nil if @head.nil?
-    index = @head
-    while !index.next_node.nil?
-      index = index.next_node
+    if @acceptable_inputs.include?(data)
+      node = find_by_index(index - 2)
+      old_next = node.next_node
+      node.set_next(Node.new(data))
+      node.next_node.set_next(old_next)
+      @list_length += 1
     end
-    index
   end
 
   def count
