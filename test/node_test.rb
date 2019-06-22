@@ -17,4 +17,10 @@ class NodeTest < Minitest::Test
   def test_it_has_no_next_node_by_default
     assert_nil @node.next_node
   end
+
+  def test_it_can_change_next_node
+    node_2 = Node.new("test_2")
+    @node.set_next(node_2)
+    assert_equal node_2, @node.next_node
+  end
 end
